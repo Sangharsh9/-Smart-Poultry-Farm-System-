@@ -1,0 +1,121 @@
+/* ── PoultryOS Global Styles ──────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800;900&family=DM+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+:root {
+  --bg-deep:      #060d1a;
+  --bg-card:      rgba(15, 23, 42, 0.80);
+  --border:       rgba(255, 255, 255, 0.08);
+
+  --green:        #34d399;
+  --yellow:       #fbbf24;
+  --red:          #ef4444;
+  --blue:         #38bdf8;
+  --purple:       #a78bfa;
+
+  --text-primary: #f1f5f9;
+  --text-muted:   #64748b;
+  --text-dim:     #334155;
+
+  --font-ui:      'Sora', 'Segoe UI', sans-serif;
+  --font-mono:    'DM Mono', 'Fira Code', monospace;
+
+  --radius-sm:    10px;
+  --radius-md:    16px;
+  --radius-lg:    20px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* scrollbar */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: rgba(255,255,255,.12); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.22); }
+
+/* ── utility animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.fade-up  { animation: fadeUp  .5s ease both; }
+.fade-in  { animation: fadeIn  .4s ease both; }
+.spin     { animation: spin  1s linear infinite; }
+.pulse    { animation: pulse 2s ease-in-out infinite; }
+
+/* ── card base ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(14px);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* ── skeleton loader ── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,.04) 25%,
+    rgba(255,255,255,.09) 50%,
+    rgba(255,255,255,.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ── status colors ── */
+.status-good   { color: var(--green);  }
+.status-warn   { color: var(--yellow); }
+.status-danger { color: var(--red);    }
+.status-off    { color: var(--text-muted); }
+
+/* ── button reset ── */
+button {
+  cursor: pointer;
+  font-family: var(--font-ui);
+  border: none;
+  background: none;
+}
+button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
